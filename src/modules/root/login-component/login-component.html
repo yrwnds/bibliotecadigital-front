@@ -1,18 +1,18 @@
 <div class="login-left-form">
   <h2>UFSMLib</h2>
 
-  <h1>Faça login</h1>
-  <h4>e acesse nosso catálogo gratuitamente</h4>
+  <h1 class="title">Faça login</h1>
+  <h4 class="subtitle">e acesse nosso catálogo gratuitamente</h4>
 
   <form class="d-flex flex-column" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" class="w-100 mb-3">
+    <mat-form-field appearance="fill" class="w-100 mb-3">
       <mat-label>Matricula</mat-label>
       <input matInput type="text" formControlName="matricula">
       <mat-error>
         Matrícula é obrigatória.
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="w-100 mb-2">
+    <mat-form-field appearance="fill" class="w-100 mb-2">
       <mat-label>Senha</mat-label>
       <input matInput type="password" autocomplete="current-password" formControlName="senha">
       <mat-error>
