@@ -3,7 +3,7 @@ import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
 import {MatCardActions} from '@angular/material/card';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth-service';
 
@@ -25,7 +25,8 @@ import {AuthService} from '../../../core/services/auth-service';
 export class LoginComponent {
   form: FormGroup;
   constructor(private authService: AuthService,
-              private fb: FormBuilder
+              private fb: FormBuilder,
+              private router: Router
               ){
     this.form = this.fb.group({
       matricula: ['', [Validators.required]],
@@ -38,8 +39,10 @@ export class LoginComponent {
       console.log(matricula, senha);
 
       this.authService.login(matricula, senha).subscribe({
-        next: (token) => {
-          console.log('Login com sucesso, token', token);
+        next: (response) => {
+          console.log('Login com sucesso');
+          this.authService.setToken(response.token);
+          this.router.navigate(['/home']);
         },
         error: (err) => {
           console.log('Login falhou ', err);

@@ -1,0 +1,63 @@
+<div class="d-flex flex-column align-items-center mt-4">
+  <h1>Gestão de Usuarios</h1>
+  <p>Gerencie a informação dos usuarios aqui.</p>
+</div>
+
+<div class="container">
+  <form class="mb-4" [formGroup]="form" (ngSubmit)="isEditando? atualizarUsuario() : adicionarUsuario()">
+    <div class="d-flex">
+      <mat-form-field class="me-2 flex-grow-1">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName="nome">
+      </mat-form-field>
+      <mat-form-field class="me-2 flex-grow-1">
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field class="me-2 flex-grow-1">
+        <mat-label>Matricula</mat-label>
+        <input matInput type="text" formControlName="matricula">
+      </mat-form-field>
+      <div class="d-flex justify-content-center">
+        <button mat-raised-button color="primary" type="submit">
+          {{ this.isEditando? 'Atualizar aluno' : 'Adicionar aluno' }}
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-secondary mt-2">
+    <thead>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Matricula</th>
+    </thead>
+    <tbody>
+      @for (dado of dados; track dado.id) {
+        <tr>
+          <td>
+            {{ dado.id }}
+          </td>
+          <td>
+            {{ dado.nome }}
+          </td>
+          <td>
+            {{ dado.email }}
+          </td>
+          <td>
+            {{ dado.matricula }}
+          </td>
+          <td class="text-end">
+            <button mat-button (click)="editarUsuario(dado)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button (click)="excluirUsuario(dado)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr> }
+    </tbody>
+  </table>
+
+</div>
