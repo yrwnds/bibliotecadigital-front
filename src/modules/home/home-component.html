@@ -1,19 +1,51 @@
+
+
 <div class="container-fluid">
   <mat-toolbar color="primary" class="d-flex justify-content-between">
-    <span>Biblioteca digital</span>
     <button mat-button routerLink="dashboard">
-      <mat-icon>home</mat-icon>
-      Home
+      <h2>UFSMLib</h2>
     </button>
-    <button mat-button routerLink="usuario">
-      Usuarios
+
+    <button mat-button routerLink="perfil">
+      <mat-icon>face</mat-icon>
+      Perfil
     </button>
+
+    <section class="pesquisa">
+      <input type="text" id="pesquisa" placeholder="Pesquise por um título, autor ou ano...">
+      <mat-icon>search</mat-icon>
+    </section>
+
+
+      <button mat-button [matMenuTriggerFor]="menu"
+              #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+        <mat-icon>admin_panel_settings</mat-icon>
+        Admin
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" [overlapTrigger]="false">
+        <span (mouseleave)="menuTrigger.closeMenu()">
+          <button mat-button routerLink="usuario">
+            Usuários
+            <mat-icon>person</mat-icon>
+          </button>
+          <button mat-button routerLink="livros">
+            Livros
+            <mat-icon>book</mat-icon>
+          </button>
+          <button mat-button routerLink="emprestimo">
+           Empréstimos
+            <mat-icon>view_list</mat-icon>
+          </button>
+        </span>
+      </mat-menu>
     <button mat-button (click)="logout()">
       <mat-icon>logout</mat-icon>
       Sair
     </button>
   </mat-toolbar>
 </div>
+
 <div class="content">
   <router-outlet></router-outlet>
 </div>

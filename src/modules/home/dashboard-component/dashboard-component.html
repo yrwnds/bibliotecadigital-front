@@ -1,4 +1,33 @@
-<div class="d-flex flex-column align-items-center mt-4">
-  <h1>Dashboard</h1>
-  <p>Bem-vindo ao sistema de biblioteca</p>
+<div class="d-flex flex-column">
+  <div class="filtros" id="filtros">
+    <section>
+      <mat-icon>library_books</mat-icon>
+      <h4>Categorias</h4>
+      <ul>
+        <li><button>Todas as categorias</button></li>
+        @for (cat of cat; track cat.id){
+          <li><button>{{ cat.nome }}</button></li>
+        }
+      </ul>
+    </section>
+    <section>
+      <h4>Ordenar por</h4>
+      <mat-form-field>
+        <mat-select>
+          <mat-option>
+            aaa
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+  </div>
+
+  <div>
+    <h1> Livros </h1>
+    @for(liv of liv ; track liv.isbn){
+      <h1>{{ liv.titulo }}</h1>
+      <h2>{{ liv.autor }}, {{ liv.anopublicado }}</h2>
+    }
+  </div>
+
 </div>

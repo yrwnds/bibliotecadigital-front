@@ -32,6 +32,7 @@
       <th>Nome</th>
       <th>E-mail</th>
       <th>Matricula</th>
+      <th>Identificador</th>
     </thead>
     <tbody>
       @for (dado of dados; track dado.id) {
@@ -47,6 +48,9 @@
           </td>
           <td>
             {{ dado.matricula }}
+          </td>
+          <td>
+            {{dado.identificador}}
           </td>
           <td class="text-end">
             <button mat-button (click)="editarUsuario(dado)">

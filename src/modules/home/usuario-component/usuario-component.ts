@@ -34,8 +34,8 @@ export class UsuarioComponent implements OnInit {
         id: [null],
         nome: [null, [Validators.required]],
         matricula: [null, [Validators.required]],
-        email: [null, [Validators.required, Validators.email]]
-
+        email: [null, [Validators.required, Validators.email]],
+        identificador: [null, [Validators.required]]
       }
     )
   }
