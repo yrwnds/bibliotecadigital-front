@@ -6,6 +6,8 @@ import {MatIcon} from '@angular/material/icon';
 import {AuthService} from '../../core/services/auth-service';
 import {MatFormField} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
+import {LivroService} from '../../core/services/livro-service';
+
 
 @Component({
   selector: 'app-home-component',
@@ -23,11 +25,10 @@ import {MatMenuModule} from '@angular/material/menu';
 })
 export class HomeComponent {
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private livroService : LivroService){
   }
 
   protected logout(){
     this.authService.logout();
   }
-
 }
