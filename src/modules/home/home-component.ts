@@ -31,4 +31,9 @@ export class HomeComponent {
   protected logout(){
     this.authService.logout();
   }
+
+  protected getRole(){
+    console.log(this.authService.getUserRole());
+    return this.authService.getUserRole();
+  }
 }

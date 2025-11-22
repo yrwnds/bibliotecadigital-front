@@ -6,6 +6,7 @@ import {MatButton} from '@angular/material/button';
 import {Usuario} from '../../../core/models/usuario';
 import {UsuarioService} from '../../../core/services/usuario-service';
 import {MatIcon} from '@angular/material/icon';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-aluno-component',
@@ -35,7 +36,8 @@ export class UsuarioComponent implements OnInit {
         nome: [null, [Validators.required]],
         matricula: [null, [Validators.required]],
         email: [null, [Validators.required, Validators.email]],
-        identificador: [null, [Validators.required]]
+        identificador: [null, [Validators.required]],
+        senha: [null, [Validators.required]]
       }
     )
   }
@@ -51,23 +53,6 @@ export class UsuarioComponent implements OnInit {
         }
       }
     )
-  }
-
-  adicionarUsuario(){
-    if (this.form.valid){
-      const {nome, email} = this.form.value;
-      this.usuarioService.create({nome, email} as Usuario).subscribe(
-        {
-          next: (usuarios) => {
-            this.dados = [...this.dados, usuarios];
-            this.form.reset();
-          },
-          error: (err) => {
-            console.error('Erro ao adicionar usuario: ', err);
-      }
-        }
-      )
-    }
   }
 
   protected excluirUsuario(usuario: Usuario){
@@ -90,24 +75,30 @@ export class UsuarioComponent implements OnInit {
       id: usuario.id,
       nome: usuario.nome,
       matricula: usuario.matricula,
-      email: usuario.email
+      email: usuario.email,
+      identificador: usuario.identificador,
+      senha: usuario.senha
     });
   }
 
   protected atualizarUsuario(){
-    if (this.form.valid && this.isEditando){
-      const usuario : Usuario = this.form.value;
-      this.usuarioService.update(usuario).subscribe({
+    if (this.form.valid){
+      const {id, nome, matricula, email, identificador, senha} = this.form.value;
+      this.usuarioService.update({id, nome, matricula, email, identificador, senha}).subscribe({
         next: (usuarioAtualizado) => {
-          this.dados = this.dados.map(dado => dado.id === usuario.id ? usuarioAtualizado : dado);
-          this.isEditando = false;
-          this.form.reset();
+          this.dados = this.dados.map(usuario => usuario.id === id ? usuarioAtualizado : usuario);
+          this.resetForm();
         },
         error: (err) => {
           console.error('Erro ao atualizar usuario: ', err);
         }
       })
     }
+  }
+
+   resetForm() {
+    this.form.reset();
+    this.isEditando = false;
   }
 
 }

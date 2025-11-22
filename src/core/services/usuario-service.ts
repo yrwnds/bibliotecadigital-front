@@ -14,6 +14,10 @@ export class UsuarioService {
     return this.httpClient.get<Usuario[]>(env.apiUrl + '/usuarios/listar');
   }
 
+  buscarPorMatricula(matricula: string): Observable<Usuario>{
+    return this.httpClient.get<Usuario>(env.apiUrl + '/usuarios/buscarmatricula/' + matricula);
+  }
+
   create(usuario: Usuario): Observable<Usuario> {
     return this.httpClient.post<Usuario>(env.apiUrl + '/usuarios', usuario);
   }

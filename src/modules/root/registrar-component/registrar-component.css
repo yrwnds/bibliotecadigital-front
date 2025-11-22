@@ -1,0 +1,32 @@
+.new-user {
+  font-size: 18px;
+  color: #7e8695;
+  margin-top: 16px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.login-button{
+  border-radius: 0;
+  font-size: 18px;
+}
+
+.title{
+  padding-top: 20px;
+  font-weight: 700;
+}
+
+.subtitle{
+  color: dimgray;
+  font-size: 20px;
+  padding-bottom: 50px;
+}
+
+.login-left-form{
+  padding: 60px 60px 60px 60px;
+}
+

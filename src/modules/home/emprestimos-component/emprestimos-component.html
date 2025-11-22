@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Histórico de empréstimos</h2>
+    <p class="lead">Bem-vindo ao painel de empréstimos. Aqui, você pode visualizar e tornar empréstimos inativos.</p>
+  </div>
+
+  <table class="table table-secondary mt-2">
+    <thead>
+    <th>ID</th>
+    <th>Livro</th>
+    <th>Emprestado por</th>
+    <th>Data pego</th>
+    <th>Prazo de devolução</th>
+    <th>Status</th>
+    <th>Renovações</th>
+    </thead>
+    <tbody>
+      @for (dado of dados; track dado.id) {
+        <tr>
+          <td>
+            {{ dado.id }}
+          </td>
+          <td>
+            {{ dado.livro.titulo }}
+          </td>
+          <td>
+            {{ dado.usuario.nome }}
+          </td>
+          <td>
+            {{ dado.datapego }}
+          </td>
+          <td>
+            {{ dado.dataprazo }}
+          </td>
+          <td>
+            {{ dado.status }}
+          </td>
+          <td>
+            {{ dado.qt_renovacoes }}
+          </td>
+          <td class="text-end">
+            <button mat-button>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</div>

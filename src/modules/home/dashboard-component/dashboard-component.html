@@ -54,6 +54,13 @@
         </div>
       </div>
 
+      @if (errorMessage != ''){
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>{{ errorMessage }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      }
+
       <div class="lista-livros row">
         @if(liv.length === 0 ){
           <p>Nenhum resultado encontrado.</p>
@@ -64,9 +71,9 @@
               <img class="card-img-top" src="/book-cover-placeholder.png" alt="Capa do livro">
               <div class="card-body">
                 <h5 class="card-title">{{  liv.titulo  }}</h5>
-                <p class="card-text">{{ liv.autor }}<br>{{ liv.anopublicado }}</p>
-                @if ( liv!.n_disponiveis! > 0) {
-                  <button type="button" class="btn btn-muted">Pegue emprestado</button>
+                <p class="card-text">{{ liv.autor }}<br>{{ liv.anopublicado }}<br>{{ liv.n_disponivel }} de {{ liv.n_exemplares }} disponíveis.</p>
+                @if ( liv!.n_disponivel! > 0) {
+                  <button type="button" class="btn btn-primary" (click)="emprestimo(liv.isbn!)">Pegue emprestado</button>
                 } @else {
                   <button type="button" class="btn btn-primary" disabled>Pegue emprestado</button>
                 }
@@ -74,7 +81,13 @@
             </div>
           }
         }
+
       </div>
     </main>
   </div>
 </div>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha384+MdS9E5PLPuPkQsVEWyFtUVvihJpLiKuDO/n9+5dtI9Tf/8MpGdqc1BqumOq/n3h"
+  crossorigin="anonymous">
+</script>

@@ -1,30 +1,45 @@
-<div class="d-flex flex-column align-items-center mt-4">
-  <h1>Gestão de Usuarios</h1>
-  <p>Gerencie a informação dos usuarios aqui.</p>
-</div>
 
 <div class="container">
-  <form class="mb-4" [formGroup]="form" (ngSubmit)="isEditando? atualizarUsuario() : adicionarUsuario()">
-    <div class="d-flex">
-      <mat-form-field class="me-2 flex-grow-1">
-        <mat-label>Nome</mat-label>
-        <input matInput type="text" formControlName="nome">
-      </mat-form-field>
-      <mat-form-field class="me-2 flex-grow-1">
-        <mat-label>E-mail</mat-label>
-        <input matInput type="email" formControlName="email">
-      </mat-form-field>
-      <mat-form-field class="me-2 flex-grow-1">
-        <mat-label>Matricula</mat-label>
-        <input matInput type="text" formControlName="matricula">
-      </mat-form-field>
-      <div class="d-flex justify-content-center">
-        <button mat-raised-button color="primary" type="submit">
-          {{ this.isEditando? 'Atualizar aluno' : 'Adicionar aluno' }}
-        </button>
-      </div>
+
+  @if(isEditando){
+    <div class="col-md-8 border border-muted p-5 mt-5 mx-auto">
+      <form [formGroup]="form" (ngSubmit)="atualizarUsuario()">
+        <div class="row">
+          <input type="hidden" formControlName="id">
+          <input type="hidden" formControlName="identificador">
+          <input type="hidden" formControlName="senha">
+          <mat-form-field class="col-md-6 mb-3">
+            <mat-label>Nome</mat-label>
+            <input matInput type="text" formControlName="nome">
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mb-3">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Matricula</mat-label>
+            <input matInput type="text" formControlName="matricula">
+          </mat-form-field>
+          <hr class="mb-4">
+          <div class="row">
+            <button class="btn btn-primary" type="submit">
+              Atualizar usuário
+            </button>
+            <button class="btn btn-outline-dark mt-4" (onclick)="resetForm()">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
+  }
+  <div class="container">
+    <div class="py-5 text-center">
+      <h2>Controle de usuários</h2>
+      <p class="lead">Bem-vindo ao painel de controle de usuários. Aqui, você pode editar as informações de, assim como remover usuários.</p>
+    </div>
+
+
 
   <table class="table table-secondary mt-2">
     <thead>

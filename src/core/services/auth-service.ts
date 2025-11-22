@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_KEY = 'auth_user';
+
   constructor(private httpClient: HttpClient,
               private router: Router,
               private route: ActivatedRoute){
@@ -28,16 +29,32 @@ export class AuthService {
 
   private userFromToken(token: String){
     const payload = token.split('.')[1];
-    if(!payload) return null;
+    if(payload === '') return null;
     const decoded = JSON.parse(atob(payload));
     return{
-      email: decoded.sub ?? undefined,
+      matricula: decoded.sub ?? undefined,
       role: decoded.role ?? undefined
     };
   }
 
   getToken(){
     return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  getUserRole(){
+    const token = this.getToken()
+    // @ts-ignore
+    const payload = token.split('.')[1];
+    const decoded = JSON.parse(atob(payload));
+    return decoded.role
+  }
+
+  getUserMat(){
+    const token = this.getToken()
+    // @ts-ignore
+    const payload = token.split('.')[1];
+    const decoded = JSON.parse(atob(payload));
+    return decoded.sub
   }
 
   isLogged(){

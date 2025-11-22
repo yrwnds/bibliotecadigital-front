@@ -1,0 +1,12 @@
+.pesquisa{
+  padding: 8px 15px;
+  border-radius: 30px;
+  width: 350px;
+  color: gray;
+}
+
+.input{
+  border-radius: 5px;
+  border: 0;
+  color: gray;
+}

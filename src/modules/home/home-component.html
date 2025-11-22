@@ -11,7 +11,7 @@
       Perfil
     </button>
 
-
+    @if(getRole() === "ADMIN"){
       <button mat-button [matMenuTriggerFor]="menu"
               #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
         <mat-icon>admin_panel_settings</mat-icon>
@@ -28,12 +28,14 @@
             Livros
             <mat-icon>book</mat-icon>
           </button>
-          <button mat-button routerLink="emprestimo">
+          <button mat-button routerLink="emprestimos">
            Empréstimos
             <mat-icon>view_list</mat-icon>
           </button>
         </span>
       </mat-menu>
+    }
+
     <button mat-button (click)="logout()">
       <mat-icon>logout</mat-icon>
       Sair

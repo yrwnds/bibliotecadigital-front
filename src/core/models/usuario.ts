@@ -4,4 +4,5 @@ export interface Usuario {
   matricula?: string;
   email?: string;
   identificador?: string;
+  senha?: string;
 }

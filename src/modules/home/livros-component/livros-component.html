@@ -1,0 +1,122 @@
+
+<div class="container">
+
+    <div class="col-md-8 border border-muted p-5 mt-5 mx-auto">
+      <form [formGroup]="form" (ngSubmit)="isEditando? atualizarLivro() : adicionarLivro()">
+        <div class="row">
+          <input type="hidden" formControlName="isbn">
+          <input type="hidden" formControlName="n_disponivel">
+          <mat-form-field class="col-md-6 mb-3">
+            <mat-label>Titulo</mat-label>
+            <input matInput type="text" formControlName="titulo">
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mb-3">
+            <mat-label>Autor</mat-label>
+            <input matInput type="email" formControlName="autor">
+          </mat-form-field>
+          <mat-form-field class="col-md-2 mb-3">
+            <mat-label>Ano pub.</mat-label>
+            <input matInput type="number" formControlName="anopublicado">
+          </mat-form-field>
+          <mat-form-field class="col-md-10 mb-3">
+            <mat-label>Categoria</mat-label>
+            <mat-select formControlName="categoria">
+              @for (cat of categorias ; track cat.id){
+                <mat-option [value]="cat">
+                  {{ cat.nome }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-md-9">
+            <mat-label>Linguagem</mat-label>
+            <input matInput type="text" formControlName="linguagem">
+          </mat-form-field>
+          <mat-form-field  class="col-3">
+            <mat-label>N. exemplares</mat-label>
+            <input matInput type="number" formControlName="n_exemplares" min="5" max="100">
+          </mat-form-field>
+          <hr class="mb-4">
+          <div class="row">
+            <button class="btn btn-primary" type="submit">
+              @if(isEditando){
+                Atualizar livro
+              } @else {
+                Adicionar livro
+              }
+            </button>
+            <button class="btn btn-outline-dark mt-4" (onclick)="resetForm()">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  @if(successMessage!=''){
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{ errorMessage }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  }
+
+  <div class="container">
+    <div class="py-5 text-center">
+      <h2>Controle de livros</h2>
+      <p class="lead">Bem-vindo ao painel de controle de livro. Aqui, você pode criar, editar as informações de, e remover livros.</p>
+    </div>
+
+
+
+    <table class="table table-secondary mt-2">
+      <thead>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Ano publicado</th>
+      <th>Categoria</th>
+      <th>Linguagem</th>
+      <th>N. exemplares</th>
+      <th>E. disponíveis</th>
+      </thead>
+      <tbody>
+        @for (dado of dados; track dado.isbn) {
+          <tr>
+            <td>
+              {{ dado.isbn }}
+            </td>
+            <td>
+              {{ dado.titulo }}
+            </td>
+            <td>
+              {{ dado.autor }}
+            </td>
+            <td>
+              {{ dado.anopublicado }}
+            </td>
+            <td>
+              {{dado.categoria?.nome }}
+            </td>
+            <td>
+              {{ dado.linguagem }}
+            </td>
+            <td>
+              {{ dado.n_exemplares }}
+            </td>
+            <td>
+              {{ dado.n_disponivel }}
+            </td>
+            <td class="text-end">
+              <button mat-button (click)="editarLivro(dado)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-button (click)="excluirLivro(dado)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr> }
+      </tbody>
+    </table>
+
+  </div>
+</div>
