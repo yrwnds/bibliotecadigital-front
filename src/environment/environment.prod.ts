@@ -1,4 +1,4 @@
 export const env = {
   production: false,
-  apiUrl: 'http://localhost:8080/biblioteca-digital'
+  apiUrl: 'http://localhost:8081/poow2'
 }

@@ -16,7 +16,7 @@ export class AuthService {
   }
 
   login(matricula: string, senha: string): Observable<{token: string}>{
-    return this.httpClient.post<{token:string}>("http://localhost:8080/biblioteca-digital/login", {matricula, senha});
+    return this.httpClient.post<{token:string}>("http://localhost:8081/poow2/login", {matricula, senha});
   }
 
   setToken(token: string){
