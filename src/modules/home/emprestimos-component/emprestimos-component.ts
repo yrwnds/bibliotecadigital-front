@@ -41,4 +41,21 @@ export class EmprestimosComponent {
     )
   }
 
+  cancelar(livroid: number, usuid: number){
+
+    const livrostring = livroid.toString()
+    const usustring = usuid.toString()
+
+    this.emprestimoService.devolver(livrostring, usustring, {} as Emprestimo).subscribe({
+        next: () => {
+          console.log('Devolveu com sucesso.')
+          this.ngOnInit()
+        },
+      error: (err) => {
+          console.error('Erro devolvendo: ' + err);
+      }
+    }
+    )
+  }
+
 }

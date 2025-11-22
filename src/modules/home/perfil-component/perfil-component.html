@@ -1,1 +1,50 @@
-<p>perfil-component works!</p>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <main role="main" class="col-md-12 ml-sm-auto col-lg-12 pt-3 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Meus livros</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+        </div>
+      </div>
+
+      @if(errorMessage != ''){
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>{{ errorMessage }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      }
+
+      <div class="row lista-livros justify-content-between p-5">
+        @for(emprestimo of emprestimo ; track emprestimo.id){
+          @if(emprestimo.usuario.matricula == getMat() && emprestimo.status == "ATIVO"){
+            <div class="card mb-4" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="book-cover-placeholder.png" class="card-img" alt="Capa do livro">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ emprestimo.livro.titulo }}</h5>
+                    <p class="card-text"><small class="text-muted">{{ emprestimo.livro.autor }}, {{emprestimo.livro.anopublicado}}</small></p>
+                    <p class="card-text">Data pego: {{ emprestimo.datapego }}<br>Prazo de devolução: {{ emprestimo.dataprazo }}</p>
+                    <div class="row justify-content-evenly">
+                      <button class="btn btn-primary mb-3 col-md-5" (click)="devolver(emprestimo.livro.isbn!, emprestimo.usuario.id!)">Devolver</button>
+                      <button class="btn btn-outline-dark mb-3 col-md-5" (click)="renovar(emprestimo.livro.isbn!, emprestimo.usuario.id!)">Renovar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </main>
+  </div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha384+MdS9E5PLPuPkQsVEWyFtUVvihJpLiKuDO/n9+5dtI9Tf/8MpGdqc1BqumOq/n3h"
+  crossorigin="anonymous">
+</script>

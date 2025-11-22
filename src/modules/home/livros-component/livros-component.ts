@@ -85,7 +85,7 @@ export class LivrosComponent {
           this.dados = this.dados.filter(dado => dado.isbn !== livro.isbn)
         },
         error: (err) =>{
-          this.errorMessage = "ERRO OCORREU: " + JSON.stringify(err)
+          this.errorMessage = "ERRO OCORREU: " + JSON.stringify(err).split(',')[12]
           console.error('Erro ao excluir: ', err);
         }
       }
@@ -115,6 +115,7 @@ export class LivrosComponent {
         next: (livroAtualizado) => {
           this.dados = this.dados.map(livro => livro.isbn === isbn ? livroAtualizado : livro);
           this.resetForm();
+          this.successMessage = "Sucesso."
         },
         error: (err) => {
           this.errorMessage = "ERRO OCORREU: " + JSON.stringify(err)

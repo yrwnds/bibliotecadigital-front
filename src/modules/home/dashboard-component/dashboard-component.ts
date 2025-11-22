@@ -28,6 +28,7 @@ import {Emprestimo} from '../../../core/models/emprestimo';
 export class DashboardComponent {
 
   errorMessage: string = '';
+  successMessage: string = '';
   cat: Categoria[] = [];
   liv: Livro[] = [];
 
@@ -169,7 +170,7 @@ export class DashboardComponent {
               {
                 next: () => {
                   console.log('Emprestou com sucesso.');
-                  this.errorMessage = "Succeso."
+                  this.successMessage = "Sucesso."
                 },
                 error: (err) => {
 

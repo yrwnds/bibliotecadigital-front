@@ -39,9 +39,13 @@
             {{ dado.qt_renovacoes }}
           </td>
           <td class="text-end">
-            <button mat-button>
-              <mat-icon>cancel</mat-icon>
-            </button>
+          @if(dado.status == "ATIVO"){
+
+              <button mat-button (click)="cancelar(dado.livro.isbn!, dado.usuario.id!)">
+                <mat-icon>cancel</mat-icon>
+              </button>
+
+          }
           </td>
         </tr>
       }
