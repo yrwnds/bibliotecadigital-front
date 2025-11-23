@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
+import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
@@ -20,7 +20,8 @@ import {MatOption, MatSelect} from '@angular/material/select';
     MatButton,
     MatIcon,
     MatOption,
-    MatSelect
+    MatSelect,
+    MatError
   ],
   templateUrl: './livros-component.html',
   styleUrl: './livros-component.css',

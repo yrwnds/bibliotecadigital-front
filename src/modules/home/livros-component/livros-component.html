@@ -9,14 +9,17 @@
           <mat-form-field class="col-md-6 mb-3">
             <mat-label>Titulo</mat-label>
             <input matInput type="text" formControlName="titulo">
+            <mat-error>Título é obrigatório.</mat-error>
           </mat-form-field>
           <mat-form-field class="col-md-6 mb-3">
             <mat-label>Autor</mat-label>
             <input matInput type="email" formControlName="autor">
+            <mat-error>Autor é obrigatório.</mat-error>
           </mat-form-field>
           <mat-form-field class="col-md-2 mb-3">
             <mat-label>Ano pub.</mat-label>
             <input matInput type="number" formControlName="anopublicado">
+            <mat-error>Ano é obrigatório.</mat-error>
           </mat-form-field>
           <mat-form-field class="col-md-10 mb-3">
             <mat-label>Categoria</mat-label>
@@ -27,14 +30,17 @@
                 </mat-option>
               }
             </mat-select>
+            <mat-error>Categoria é obrigatória.</mat-error>
           </mat-form-field>
           <mat-form-field class="col-md-9">
             <mat-label>Linguagem</mat-label>
             <input matInput type="text" formControlName="linguagem">
+            <mat-error>Linguagem é obrigatória.</mat-error>
           </mat-form-field>
           <mat-form-field  class="col-3">
             <mat-label>N. exemplares</mat-label>
             <input matInput type="number" formControlName="n_exemplares" min="5" max="100">
+            <mat-error>Deve ser número de 5 a 100.</mat-error>
           </mat-form-field>
           <hr class="mb-4">
           <div class="row">
