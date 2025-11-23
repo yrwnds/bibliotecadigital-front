@@ -28,6 +28,7 @@ export class PerfilComponent {
   liv: Livro[] = [];
   emprestimo: Emprestimo[] = []
   errorMessage = ''
+  successMessage = ''
 
   constructor(private livroService : LivroService, private emprestimoService : EmprestimoService, private authService : AuthService){
   }
@@ -81,6 +82,7 @@ export class PerfilComponent {
     this.emprestimoService.renovar(livrostring, usustring, {} as Emprestimo).subscribe({
         next: () => {
           console.log('Renovou com sucesso.')
+          this.successMessage = 'Sucesso.'
           this.ngOnInit()
         },
         error: (err) => {
@@ -95,4 +97,8 @@ export class PerfilComponent {
     return this.authService.getUserMat();
   }
 
+  clear(){
+    this.errorMessage = ''
+    this.successMessage = ''
+  }
 }

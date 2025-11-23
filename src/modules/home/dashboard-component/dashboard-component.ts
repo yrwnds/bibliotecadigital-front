@@ -185,6 +185,11 @@ export class DashboardComponent {
     )
   }
 
+  clear(){
+    this.errorMessage = ''
+    this.successMessage = ''
+  }
+
   protected getMat() {
     return this.authService.getUserMat();
   }

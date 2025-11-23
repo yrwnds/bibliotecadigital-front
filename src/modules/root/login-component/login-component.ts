@@ -24,6 +24,9 @@ import {AuthService} from '../../../core/services/auth-service';
 })
 export class LoginComponent {
   form: FormGroup;
+
+  errorMessage = ''
+
   constructor(private authService: AuthService,
               private fb: FormBuilder,
               private router: Router
@@ -46,11 +49,16 @@ export class LoginComponent {
         },
         error: (err) => {
           console.log('Login falhou ', err);
+          this.errorMessage =  "ERRO: Matricula ou senha incorreta."
         }
       });
 
       console.log('Declarado após login');
 
     }
+  }
+
+  clear(){
+    this.errorMessage = ''
   }
 }

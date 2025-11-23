@@ -9,10 +9,17 @@
         </div>
       </div>
 
-      @if(errorMessage != ''){
+      @if (errorMessage != ''){
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <strong>{{ errorMessage }}</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clear()"></button>
+        </div>
+      }
+
+      @if (successMessage != ''){
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>{{ successMessage }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clear()"></button>
         </div>
       }
 

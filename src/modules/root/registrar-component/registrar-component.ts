@@ -27,6 +27,7 @@ import {MatCardActions} from '@angular/material/card';
 export class RegistrarComponent {
 
   form: FormGroup;
+  errorMessage = ''
 
   constructor(private fb: FormBuilder, private usuarioService : UsuarioService, private router: Router){
     this.form = this.fb.group(
@@ -53,12 +54,18 @@ export class RegistrarComponent {
           },
           error: (err) => {
             console.error('Erro ao adicionar usuario: ', err);
+            this.errorMessage = "ERRO: " + JSON.stringify(err).split(',')[13]
           }
         }
       )
     } else{
       console.log('Form não valida');
+      this.errorMessage = "Ocorreu um problema. Cheque a validade dos dados."
     }
+  }
+
+  clear(){
+    this.errorMessage = ''
   }
 
 

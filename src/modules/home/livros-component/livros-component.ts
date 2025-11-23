@@ -154,4 +154,9 @@ export class LivrosComponent {
     this.form.reset();
     this.isEditando = false;
   }
+
+  clear(){
+    this.errorMessage = ''
+    this.successMessage = ''
+  }
 }
